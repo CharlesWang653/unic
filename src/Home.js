@@ -50,28 +50,29 @@ class Home extends React.Component {
     }
     reader.readAsText(files[0],'gbk');
   }
-  csvToTable = (content) => {
-  // 对csv文件的数据先以行分割
+  csvToTable = (content) => {//csv转表格obj格式
     var userList = content.split("\n");
     var data = [];
-  // 我们在对每一行以逗号作分割
     for (var i = 1; i < userList.length; i++) {
       var userary = userList[i].split(",");
       var tr = {};
-    // 对每行的内容遍历到td标签去
-      tr.key = userary[1];
-      tr.platform = userary[2];
-      tr.name = userary[3];
-      tr.linkName = userary[3];
-      tr.link = userary[4];
+      //表里的7行
+      tr.id = userary[0]
+      tr.platform = userary[1];
+      tr.key = userary[2];
+      tr.shop = userary[3];
+      tr.name = userary[4];
       tr.price = userary[5];
+      tr.linkName = userary[4];
+      //缓存链接
+      tr.link = userary[6];
       data.push({...tr});
     }
     return data;
   }
-  print = () => {
-    console.log(this.state);
-  }
+  // print = () => {
+  //   console.log(this.state);
+  // }
   handleClick = (e, rowd) => {
     console.log(rowd);
     window.location.href = rowd.link;
@@ -86,17 +87,19 @@ class Home extends React.Component {
           icons={tableIcons}
           onRowClick={this.handleClick}
           columns={[
-            { title: "key", field: "key", disableClick:true},
-            { title: "平台", field: "platform", disableClick:true},
-            { title: "名称", field: "name", disableClick:true},
-            { title: "连接", field: "linkName" },
-            { title: "价格", field: "price", disableClick:true},
+            { title: "序号", field: "id", disableClick:true},
+            { title: "电商平台", field: "platform", disableClick:true},
+            { title: "关键字", field: "key", disableClick:true},
+            { title: "店铺名称", field: "shop", disableClick:true},
+            { title: "产品名称", field: "name", disableClick:true},
+            { title: "单价", field: "price", disableClick:true},
+            { title: "网址", field: "linkName"},
             { title: "url", field: "link", hidden:true},
           ]}
           data={this.state.text}
           title="Demo Title"
         />
-          <button onClick={this.print}>b1</button>
+          {/* <button onClick={this.print}>b1</button> */}
       </div>
     );
   }
