@@ -13,7 +13,7 @@ function App() {
                 <Link to="/">数据表</Link>
               </li>
               <li>
-                <Link to="/p1">略缩图</Link>
+                <Link to="/p1">缩略图</Link>
               </li>
             </ul>
           </nav>

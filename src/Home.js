@@ -48,7 +48,7 @@ class Home extends React.Component {
     // Use reader.result
       this.setState({text:this.csvToTable(reader.result)});
     }
-    reader.readAsText(files[0],'utf-16');
+    reader.readAsText(files[0],'gbk');
   }
   csvToTable = (content) => {//csv转表格obj格式
     var userList = content.split("\n");
@@ -97,7 +97,7 @@ class Home extends React.Component {
             { title: "url", field: "link", hidden:true},
           ]}
           data={this.state.text}
-          title="Demo Title"
+          title="14组爬虫展示"
         />
           {/* <button onClick={this.print}>b1</button> */}
       </div>
