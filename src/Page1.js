@@ -1,16 +1,17 @@
 import React from "react"
 import ReactFileReader from 'react-file-reader';
-import Avatar from '@material-ui/core/Avatar';
-class Pic extends React.Component {
-  // componentDidMount = () => {
 
-  // }
+import Imgs from "./Page2"
+class Pic extends React.Component{
+  constructor(){
+    super();
+    this.state={};
+  }
   handleFiles = files => {
     var reader = new FileReader();
     reader.onload = (e) => {
     // Use reader.result
       this.setState({text:this.csvToTable(reader.result)});
-      console.log(this.state);
     }
     reader.readAsText(files[0],'utf-8');
   }
@@ -32,17 +33,16 @@ class Pic extends React.Component {
         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
           <button className='btn'>Upload</button>
         </ReactFileReader>
-        {this.state && (<div>
-          {this.state.text.map((item) => {
-            console.log(item.link);
-            return (
-              <Avatar alt="Remy Sharp" src={item.link}/>
-            );
-          })}
-        </div>)}
+        <div>
+          <Imgs link={this.state.text}></Imgs>
+        </div>
+        
+        
         Page1
       </div>
     );
   }
 }
-export default Pic;
+  // componentDidMount = () => {
+  // }
+  export default Pic;
