@@ -3,7 +3,7 @@ import ReactFileReader from 'react-file-reader';
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
 
-import {Edit, Delete, Add} from '@material-ui/icons';
+import {Edit} from '@material-ui/icons';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -48,7 +48,7 @@ class Home extends React.Component {
     // Use reader.result
       this.setState({text:this.csvToTable(reader.result)});
     }
-    reader.readAsText(files[0],'gbk');
+    reader.readAsText(files[0],'utf-16');
   }
   csvToTable = (content) => {//csv转表格obj格式
     var userList = content.split("\n");
@@ -63,7 +63,7 @@ class Home extends React.Component {
       tr.shop = userary[3];
       tr.name = userary[4];
       tr.price = userary[5];
-      tr.linkName = userary[4];
+      tr.linkName = "链接";
       //缓存链接
       tr.link = userary[6];
       data.push({...tr});
